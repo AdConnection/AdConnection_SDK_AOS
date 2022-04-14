@@ -9,18 +9,20 @@
 ![스크린샷 2022-04-14 오후 5 04 25](https://user-images.githubusercontent.com/103635743/163358380-c78ad268-9905-415c-9ba4-9ebbed6040b9.png)
 
 
-2. java 프로젝트인 경우 kotlin 사용을 위해 
-project 단위 build.gradle과, app 단위 build.gradle 내에 아래 코드를 추가합니다.
+2. *java 프로젝트인 경우* kotlin 사용을 위해 
+project 단위 build.gradle과, app 단위 build.gradle 내에 아래와 같이 코드를 추가합니다.
 
 **project > build.gradle**
+
+![스크린샷 2022-04-14 오후 5 11 29](https://user-images.githubusercontent.com/103635743/163358839-7cd7825f-05a4-407b-870b-cb5a261278b3.png)
 
 ```c
 classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
 ```
 
-
-
 **app > build.gradle**
+
+![스크린샷 2022-04-14 오후 5 11 42](https://user-images.githubusercontent.com/103635743/163358891-39560af3-e5e7-4618-b22a-48e1b55be636.png)
 
 ```c
 id 'kotlin-android'
@@ -28,7 +30,9 @@ id 'kotlin-android'
 
 
 
-3.  app 단위 build.gradle 내에 아래 두줄을 추가합니다.
+3.  app 단위 build.gradle 내에 아래와 같이 두줄을 추가합니다.
+
+![스크린샷 2022-04-14 오후 5 07 51](https://user-images.githubusercontent.com/103635743/163358540-e625c490-5da1-4c7a-9a9c-fbd43a7729eb.png)
 
 ```c
 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
@@ -124,13 +128,9 @@ val listener: AdConnectorListener = object : AdConnectorListener {
 if (adConnector != null) adConnector.requestBanner(AdSize.BANNER_320X100, listener)
 ```
 
-
-AdSize.BANNER_320X50
-320 x 50 배너
-AdSize.BANNER_320X100
-320 x 100 배너
-AdSize.BANNER_320X250
-320 x 250 배너
-
-.
+|AdSize enum|배너 크기|
+|---|---|
+|AdSize.BANNER_320X50|320 x 50 배너|
+|AdSize.BANNER_320X100|320 x 100 배너|
+|AdSize.BANNER_320X250|320 x 250 배너|
 
