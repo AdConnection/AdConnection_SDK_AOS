@@ -6,7 +6,7 @@
 
 1. 제공된 AdConnection SDK AAR 파일을 app/libs 에 넣어줍니다.
 
-
+![스크린샷 2022-04-14 오후 5 04 25](https://user-images.githubusercontent.com/103635743/163358380-c78ad268-9905-415c-9ba4-9ebbed6040b9.png)
 
 
 2. java 프로젝트인 경우 kotlin 사용을 위해 
