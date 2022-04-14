@@ -1,7 +1,7 @@
-AdConnection Android SDK Guide (V1.0.0)
+#AdConnection Android SDK Guide (V1.0.0)
 
 
--  프로젝트 설정  (minSDK 21)
+###-  프로젝트 설정  (minSDK 21)
 
 
 1.  제공된 AdConnection SDK AAR 파일을 app/libs 에 넣어줍니다.
@@ -56,7 +56,7 @@ implementation files('libs/adconnection-sdk-1.0.0-release.aar')
 
 
 
-- 광고 미디에이션 사용을 위한 커넥터 설정
+###- 광고 미디에이션 사용을 위한 커넥터 설정
 
 1. 각 라이프사이클 주기마다 아래와 같이 AdConnector 를 호출해줍니다.
 
