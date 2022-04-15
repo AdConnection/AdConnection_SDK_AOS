@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         adConnector = AdConnector(this, "6QSCI3evCp5g")
+        adConnector.bindPlatform("COUPANG", "one.adconnection.addemo.ads.SubAdViewCoupang")
         adConnector.bindAdBannerView(findViewById(R.id.container))
     }
 
