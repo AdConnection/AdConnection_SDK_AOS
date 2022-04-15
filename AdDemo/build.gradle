@@ -3,6 +3,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://raw.githubusercontent.com/coupang-ads-sdk/android/main" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.0"
