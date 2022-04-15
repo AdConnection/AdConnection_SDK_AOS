@@ -13,6 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdDemo">
+        
+        <meta-data android:name="coupang_ads_affiliate_id" android:value="your_affiliate_id"/>
+        <meta-data android:name="coupang_ads_sub_id" android:value="your_sub_id"/>
+        
         <activity
             android:name=".MainActivity"
             android:exported="true">
