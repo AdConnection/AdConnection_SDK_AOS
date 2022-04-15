@@ -98,6 +98,8 @@ adConnector.bindPlatform("COUPANG", "one.adconnection.sdk.sample.ads.SubAdViewCo
 
 - 첫번째 parameter 플랫폼명 “COUPANG” 은 변경하시면 안됩니다.
 - 두번째 parameter : 실제 SubAdViewCoupang 클래스가 위치한 프로젝트 경로로 변경해주세요
+- 쿠팡 광고 사용을 위한 프로젝트 설정은 쿠팡 가이드에 따라 추가해주시기 바랍니다.
+- 쿠팡 광고 widget id는 SubAdViewCoupang 파일에서 설정해주세요
 
 
 
