@@ -8,9 +8,12 @@
 
 ![스크린샷 2022-04-14 오후 5 04 25](https://user-images.githubusercontent.com/103635743/163358380-c78ad268-9905-415c-9ba4-9ebbed6040b9.png)
 
+<br/>
 
 2. *java 프로젝트인 경우* kotlin 사용을 위해 
 project 단위 build.gradle과, app 단위 build.gradle 내에 아래와 같이 코드를 추가합니다.
+
+<br/>
 
 **project > build.gradle**
 
@@ -20,6 +23,8 @@ project 단위 build.gradle과, app 단위 build.gradle 내에 아래와 같이 
 classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
 ```
 
+<br/>
+
 **app > build.gradle**
 
 ![스크린샷 2022-04-14 오후 5 11 42](https://user-images.githubusercontent.com/103635743/163358891-39560af3-e5e7-4618-b22a-48e1b55be636.png)
@@ -28,7 +33,7 @@ classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
 id 'kotlin-android'
 ```
 
-
+<br/>
 
 3.  app 단위 build.gradle 내에 아래와 같이 두줄을 추가합니다.
 
@@ -39,7 +44,7 @@ implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
 implementation files('libs/adconnection-sdk-1.0.0-release.aar')
 ```
 
-
+<br/>
 
 4. 광고 사용을 위한 Manifest  퍼미션 추가
 
@@ -50,7 +55,7 @@ implementation files('libs/adconnection-sdk-1.0.0-release.aar')
 ```
 
 
-
+<br/><br/>
 
 
 
@@ -90,6 +95,8 @@ override fun onDestroy() {
 }
 ```
 
+<br/>
+
 2. 쿠팡 광고 요청을 위한 클래스를 바인딩 합니다.
 
 ```c
@@ -101,6 +108,7 @@ adConnector.bindPlatform("COUPANG", "one.adconnection.sdk.sample.ads.SubAdViewCo
 - 쿠팡 광고 사용을 위한 프로젝트 설정은 쿠팡 가이드에 따라 추가해주시기 바랍니다.
 - 쿠팡 광고 widget id는 SubAdViewCoupang 파일에서 설정해주세요
 
+<br/>
 
 
 3. 광고뷰를 보여줄 AdBanner 뷰를 바인딩 합니다.
@@ -109,6 +117,7 @@ adConnector.bindPlatform("COUPANG", "one.adconnection.sdk.sample.ads.SubAdViewCo
 adConnector.bindAdBannerView(findViewById(R.id.container))
 ```
 
+<br/>
 
 4. 광고 요청
 
