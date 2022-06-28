@@ -153,3 +153,63 @@ if (adConnector != null) adConnector.requestBanner(AdSize.BANNER_320X100, listen
 
 1. 광고 요소 확인
 <img width="407" alt="스크린샷 2022-06-28 오후 5 05 19" src="https://user-images.githubusercontent.com/103635743/176127792-3b928f4f-88c2-4ef1-84c1-7369d10d25ea.png">
+
+2. xml 정의 - 광고를 보여줄 layout을 아래 예시와 같이 정의합니다.
+
+```c
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/native_ad_icon" .../>
+
+        <TextView
+            android:id="@+id/native_ad_title" .../>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/native_ad_description" .../>
+
+    <ImageView
+        android:id="@+id/native_ad_main"  .../>
+
+    <Button
+        android:id="@+id/native_ad_button" .../>
+
+</RelativeLayout>
+```
+
+3. NativeAdViewBinder 객체를 생성하여 xml에 정의한 Layout id와 광고 요소를 바인딩 합니다.
+   (Layout Id, title, icon은 필수 요소입니다.)
+
+```c
+val viewBinder: NativeAdViewBinder = NativeAdViewBinder.Builder(
+            R.layout.native_ad_template,
+            R.id.native_ad_title,
+            R.id.native_ad_icon
+        )
+            .setDescriptionId(R.id.native_ad_description)
+            .setMainImageId(R.id.native_ad_main)
+            .setButtonId(R.id.native_ad_button)
+            .build()
+```
+
+4. 광고 요청
+
+```c
+val listener: NativeResultListener = object : NativeResultListener {
+
+            override fun onReceiveAd(nativeView: NativeAdView) {
+                // 광고 수신 성공시 호출됩니다. 광고요소가 그려진 FrameLayout이 return
+            }
+
+            override fun onError(errorCode: Int) {
+	    	// 광고 수신 실패시 호출됩니다.
+                Log.d("AdConnection", "[Native] onFailedToReceiveAd : $errorCode")
+            }
+        }
+
+        if (adConnector != null) adConnector.requestNativeAd(viewBinder, listener)
+```
