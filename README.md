@@ -60,7 +60,7 @@ implementation files('libs/adconnection-sdk-1.0.0-release.aar')
 
 
 
-### - 광고 미디에이션 사용을 위한 커넥터 설정
+### - 광고 사용을 위한 커넥터 설정
 
 1. 각 라이프사이클 주기마다 아래와 같이 AdConnector 를 호출해줍니다.
 
@@ -98,7 +98,9 @@ override fun onDestroy() {
 
 <br/>
 
-2. 쿠팡 광고 요청을 위한 클래스를 바인딩 합니다.
+### - 미디에이션 배너 요청
+
+1. 쿠팡 광고 요청을 위한 클래스를 바인딩 합니다.
 
 ```c
 adConnector.bindPlatform("COUPANG", "one.adconnection.sdk.sample.ads.SubAdViewCoupang")
@@ -112,7 +114,7 @@ adConnector.bindPlatform("COUPANG", "one.adconnection.sdk.sample.ads.SubAdViewCo
 <br/>
 
 
-3. 광고뷰를 보여줄 AdBanner 뷰를 바인딩 합니다.
+2. 광고뷰를 보여줄 AdBanner 뷰를 바인딩 합니다.
 
 ```c
 adConnector.bindAdBannerView(findViewById(R.id.container))
@@ -120,7 +122,7 @@ adConnector.bindAdBannerView(findViewById(R.id.container))
 
 <br/>
 
-4. 광고 요청
+3. 광고 요청
 
 ```c
 val listener: AdConnectorListener = object : AdConnectorListener {
@@ -146,3 +148,8 @@ if (adConnector != null) adConnector.requestBanner(AdSize.BANNER_320X100, listen
 |AdSize.BANNER_320X100|320 x 100 배너|
 |AdSize.BANNER_320X250|320 x 250 배너|
 
+
+### - 네이티브 광고 요청
+
+1. 광고 요소 확인
+<img width="407" alt="스크린샷 2022-06-28 오후 5 05 19" src="https://user-images.githubusercontent.com/103635743/176127792-3b928f4f-88c2-4ef1-84c1-7369d10d25ea.png">
