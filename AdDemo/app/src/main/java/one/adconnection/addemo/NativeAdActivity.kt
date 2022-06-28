@@ -49,6 +49,7 @@ class NativeAdActivity : AppCompatActivity() {
         val listener: NativeResultListener = object : NativeResultListener {
 
             override fun onReceiveAd(nativeView: NativeAdView) {
+                Log.d("AdConnection", "[Native] onReceiveAd")
                 (listview!!.adapter as ListViewAdapter).addItem(
                     adIdx,
                     nativeView
