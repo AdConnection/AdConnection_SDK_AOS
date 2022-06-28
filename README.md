@@ -148,11 +148,15 @@ if (adConnector != null) adConnector.requestBanner(AdSize.BANNER_320X100, listen
 |AdSize.BANNER_320X100|320 x 100 배너|
 |AdSize.BANNER_320X250|320 x 250 배너|
 
+<br/>
+<br/>
 
 ### - 네이티브 광고 요청
 
 1. 광고 요소 확인
 <img width="407" alt="스크린샷 2022-06-28 오후 5 05 19" src="https://user-images.githubusercontent.com/103635743/176127792-3b928f4f-88c2-4ef1-84c1-7369d10d25ea.png">
+
+<br/>
 
 2. xml 정의 - 광고를 보여줄 layout을 아래 예시와 같이 정의합니다.
 
@@ -181,6 +185,8 @@ if (adConnector != null) adConnector.requestBanner(AdSize.BANNER_320X100, listen
 </RelativeLayout>
 ```
 
+<br/>
+
 3. NativeAdViewBinder 객체를 생성하여 xml에 정의한 Layout id와 광고 요소를 바인딩 합니다.
    (Layout Id, title, icon은 필수 요소입니다.)
 
@@ -195,6 +201,8 @@ val viewBinder: NativeAdViewBinder = NativeAdViewBinder.Builder(
             .setButtonId(R.id.native_ad_button)
             .build()
 ```
+
+<br/>
 
 4. 광고 요청
 
@@ -213,3 +221,5 @@ val listener: NativeResultListener = object : NativeResultListener {
 
         if (adConnector != null) adConnector.requestNativeAd(viewBinder, listener)
 ```
+
+<br/>
