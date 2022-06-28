@@ -1,70 +1,73 @@
 package one.adconnection.addemo
 
-import android.content.res.Resources
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import one.adconnection.sdk.AdConnector
-import one.adconnection.sdk.AdConnectorListener
-import one.adconnection.sdk.AdSize
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.BaseAdapter
+import android.widget.ListView
+import android.widget.TextView
+import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
-    lateinit var adConnector: AdConnector
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adConnector = AdConnector(this, "6QSCI3evCp5g")
-        adConnector.bindPlatform("COUPANG", "one.adconnection.addemo.ads.SubAdViewCoupang")
-        adConnector.bindAdBannerView(findViewById(R.id.container))
+        // 샘플 프로젝트 화면 구성
+        initLayout()
     }
 
-    fun onClick(v: View) {
-        if (v.id == R.id.request) {
-            requestAd()
-        }
-    }
 
-    // 전면배너 Dynamic 광고 요청
-    private fun requestAd() {
-        val listener: AdConnectorListener = object : AdConnectorListener {
+    fun initLayout() {
+        var itemList: ArrayList<DemoListItem> = ArrayList<DemoListItem>()
 
-            override fun onReceiveAd(message: String?) {
-                Log.d("ADConnection", "[Dynamic] onReceiveAd ")
+        itemList.add(DemoListItem("BANNER_MEDIATION"))
+        itemList.add(DemoListItem("NATIVE"))
+
+        val listView = findViewById<ListView>(R.id.listview)
+        var adapter: DemoListAdapter = DemoListAdapter(itemList)
+        listView.adapter = adapter
+        listView.setOnItemClickListener { parent: AdapterView<*>, view: View, position: Int, id: Long ->
+            val item = parent.getItemAtPosition(position) as DemoListItem
+            var intent: Intent? = null
+            print(item.value)
+            when (item.value) {
+                "BANNER_MEDIATION" -> intent = Intent(this, MediationBannerActivity::class.java)
+                "NATIVE" -> intent = Intent(this, NativeAdActivity::class.java)
             }
 
-            override fun onFailedToReceiveAd(error: String?) {
-                Log.d("ADConnection", "[Dynamic] onFailedToReceiveAd : $error")
+            if (intent != null) {
+                startActivity(intent)
             }
         }
-
-        if (adConnector != null) adConnector.requestBanner(AdSize.BANNER_320X100, listener)
     }
 
-    fun getScreenWidth(): Int {
-        return Resources.getSystem().getDisplayMetrics().widthPixels
-    }
+    class DemoListAdapter(private val list: ArrayList<DemoListItem>) : BaseAdapter() {
+        override fun getCount(): Int {
+            return list.size
+        }
 
-    override fun onResume() {
-        super.onResume()
-        if(adConnector != null) {
-            adConnector.resume(this)
+        override fun getItem(position: Int): DemoListItem {
+            return list[position]
+        }
+
+        override fun getItemId(position: Int): Long = position.toLong()
+
+        override fun getView(position: Int, view: View?, parent: ViewGroup?): View {
+            var convertView = view
+            if (convertView == null) {
+                convertView = LayoutInflater.from(parent?.context).inflate(R.layout.main_list_item, null)
+            }
+            var item = list[position]
+            val txtItem = convertView?.findViewById<View>(R.id.text) as TextView
+            txtItem.text = item.value
+            return convertView
         }
     }
 
-    override fun onPause() {
-        if(adConnector != null) {
-            adConnector.pause(this)
-        }
-        super.onPause()
-    }
-
-    override fun onDestroy() {
-        if(adConnector != null) {
-            adConnector.destroy(this)
-        }
-        super.onDestroy()
-    }
+    data class DemoListItem(val value: String)
 }

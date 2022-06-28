@@ -3,6 +3,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://raw.githubusercontent.com/coupang-ads-sdk/android/main" }
     }
 }
 rootProject.name = "AdDemo"
