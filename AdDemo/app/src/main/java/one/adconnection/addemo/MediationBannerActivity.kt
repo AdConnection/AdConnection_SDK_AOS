@@ -17,7 +17,7 @@ class MediationBannerActivity : AppCompatActivity() {
         setContentView(R.layout.layout_banner)
 
         adConnector = AdConnector(this, "JxNuarw0z6Ro")
-        adConnector.bindPlatform("COUPANG", "one.adconnection.sdk.sample.ads.SubAdViewCoupang")
+        adConnector.bindPlatform("COUPANG", "one.adconnection.addemo.ads.SubAdViewCoupang")
         adConnector.bindAdBannerView(findViewById(R.id.container))
     }
 
