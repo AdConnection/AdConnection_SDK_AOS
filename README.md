@@ -1,5 +1,6 @@
-# AdConnection Android SDK Guide (V1.0.0)
+# AdConnection Android SDK Guide (V1.1.0)
 
+**효율적인 이미지 관리를 위해 SDK에 Glide 라이브러리가 포함되어 있습니다**
 
 ### -  프로젝트 설정  (minSDK 21)
 
@@ -59,7 +60,7 @@ implementation files('libs/adconnection-sdk-1.0.0-release.aar')
 
 
 
-### - 광고 미디에이션 사용을 위한 커넥터 설정
+### - 광고 사용을 위한 커넥터 설정
 
 1. 각 라이프사이클 주기마다 아래와 같이 AdConnector 를 호출해줍니다.
 
@@ -97,7 +98,9 @@ override fun onDestroy() {
 
 <br/>
 
-2. 쿠팡 광고 요청을 위한 클래스를 바인딩 합니다.
+### - 미디에이션 배너 요청
+
+1. 쿠팡 광고 요청을 위한 클래스를 바인딩 합니다.
 
 ```c
 adConnector.bindPlatform("COUPANG", "one.adconnection.sdk.sample.ads.SubAdViewCoupang")
@@ -111,7 +114,7 @@ adConnector.bindPlatform("COUPANG", "one.adconnection.sdk.sample.ads.SubAdViewCo
 <br/>
 
 
-3. 광고뷰를 보여줄 AdBanner 뷰를 바인딩 합니다.
+2. 광고뷰를 보여줄 AdBanner 뷰를 바인딩 합니다.
 
 ```c
 adConnector.bindAdBannerView(findViewById(R.id.container))
@@ -119,7 +122,7 @@ adConnector.bindAdBannerView(findViewById(R.id.container))
 
 <br/>
 
-4. 광고 요청
+3. 광고 요청
 
 ```c
 val listener: AdConnectorListener = object : AdConnectorListener {
@@ -145,3 +148,78 @@ if (adConnector != null) adConnector.requestBanner(AdSize.BANNER_320X100, listen
 |AdSize.BANNER_320X100|320 x 100 배너|
 |AdSize.BANNER_320X250|320 x 250 배너|
 
+<br/>
+<br/>
+
+### - 네이티브 광고 요청
+
+1. 광고 요소 확인
+<img width="407" alt="스크린샷 2022-06-28 오후 5 05 19" src="https://user-images.githubusercontent.com/103635743/176127792-3b928f4f-88c2-4ef1-84c1-7369d10d25ea.png">
+
+<br/>
+
+2. xml 정의 - 광고를 보여줄 layout을 아래 예시와 같이 정의합니다.
+
+```c
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/native_ad_icon" .../>
+
+        <TextView
+            android:id="@+id/native_ad_title" .../>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/native_ad_description" .../>
+
+    <ImageView
+        android:id="@+id/native_ad_main"  .../>
+
+    <Button
+        android:id="@+id/native_ad_button" .../>
+
+</RelativeLayout>
+```
+
+<br/>
+
+3. NativeAdViewBinder 객체를 생성하여 xml에 정의한 Layout id와 광고 요소를 바인딩 합니다.
+   (Layout Id, title, icon은 필수 요소입니다.)
+
+```c
+val viewBinder: NativeAdViewBinder = NativeAdViewBinder.Builder(
+            R.layout.native_ad_template,
+            R.id.native_ad_title,
+            R.id.native_ad_icon
+        )
+            .setDescriptionId(R.id.native_ad_description)
+            .setMainImageId(R.id.native_ad_main)
+            .setButtonId(R.id.native_ad_button)
+            .build()
+```
+
+<br/>
+
+4. 광고 요청
+
+```c
+val listener: NativeResultListener = object : NativeResultListener {
+
+            override fun onReceiveAd(nativeView: NativeAdView) {
+                // 광고 수신 성공시 호출됩니다. 광고요소가 그려진 FrameLayout이 return
+            }
+
+            override fun onError(errorCode: Int) {
+	    	// 광고 수신 실패시 호출됩니다.
+                Log.d("AdConnection", "[Native] onFailedToReceiveAd : $errorCode")
+            }
+        }
+
+        if (adConnector != null) adConnector.requestNativeAd(viewBinder, listener)
+```
+
+<br/>
