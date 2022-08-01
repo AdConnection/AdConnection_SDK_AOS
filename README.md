@@ -42,7 +42,7 @@ id 'kotlin-android'
 
 ```c
 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
-implementation files('libs/adconnection-sdk-1.0.0-release.aar')
+implementation files('libs/adconnection-sdk-1.1.2-release.aar')
 ```
 
 <br/>
