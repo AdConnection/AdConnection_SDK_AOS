@@ -33,12 +33,12 @@ class MediationBannerActivity : AppCompatActivity() {
 
             override fun onReceiveAd(message: String?) {
                 // 광고 수신 성공시 호출됩니다. plaform : 수신 성공한 광고 플랫폼명
-                Log.d("ADNext", "[Dynamic] onReceiveAd ")
+                Log.d("ADConnection", "[Dynamic] onReceiveAd ")
             }
 
             override fun onFailedToReceiveAd(error: String?) {
                 // 광고 수신 실패시 호출됩니다. AdConnection 광고가 아닌 타 플랫폼 광고는 SubAdView에서 자세한 실패 로그를 확인할 수 있습니다.
-                Log.d("ADNext", "[Dynamic] onFailedToReceiveAd : $error")
+                Log.d("ADConnection", "[Dynamic] onFailedToReceiveAd : $error")
             }
         }
 
