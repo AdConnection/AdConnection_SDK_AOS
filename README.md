@@ -1,4 +1,4 @@
-# AdConnection Android SDK Guide (V1.1.1)
+# AdConnection Android SDK Guide (V1.1.2)
 
 **효율적인 이미지 관리를 위해 SDK에 Glide 라이브러리가 포함되어 있습니다**
 
