@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
-    implementation files('libs/adconnection-sdk-1.1.2-release.aar')
+    implementation files('libs/adconnection-sdk-1.1.3-release.aar')
     implementation 'com.coupang:ads:1.2.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     testImplementation 'junit:junit:4.+'
